@@ -1,0 +1,15 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+}
+
+body {
+    height: 100vh;
+    font-family: sans-serif;
+    color: #FFD700;
+    background: linear-gradient(#333, #000)
+}
+
+
+
