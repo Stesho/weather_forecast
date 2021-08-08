@@ -6,10 +6,27 @@
 
 body {
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: sans-serif;
     color: #FFD700;
-    background: linear-gradient(#333, #000)
+    background: linear-gradient(#333, #000);
 }
 
+.head-inscription {
+    font-size: 36px;
+    padding: 5px 15px;
+    border-radius: 25px;
+    background-color: #808080;   
+}
 
+.timezone {
+    display: flex;
+    padding: 0 15px;
+    justify-content: space-between;
+}
 
+.timezone-inscription {
+    
+}
