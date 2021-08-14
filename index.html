@@ -6,127 +6,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/iconsfont.css">
     <link rel="stylesheet" href="css/style.css">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
     <title>World weather forecast</title>
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <div class="header-wrap">
-                <h1 class="header_inscription">World wea</h1>
-                <img class="header_icon" src="./img/main-icon.svg" alt="#">
-                <h1 class="header_inscription">ther forecast</h1>
-            </div>
+            <h1 class="header_inscription">World wea<img class="header_icon" src="./img/main-icon.svg" alt="#">ther forecast</h1>
         </header>
-    
+        
         <main class="main">
             <div class="navigation">
                 <div class="timezone">
-                    <div class="timezone_incription">
+                    <div class="timezone_inscription">
                         Timezone/City
                     </div>
                     <div class="timezone_city">
-                        <input type="text" text="input">
+                        <input class="timezone_input-field" type="text" placeholder="input your city">
                     </div>
                 </div>
                 <div class="forecast-type">
-                    <label class="forecast-type_button">dayly<input type="radio" name="radio" id="day"></label>
-                    <label class="forecast-type_button">weekly<input type="radio" name="radio" id="week"></label>
+                    <div class="forecast-type_inscription">
+                        Forecast type
+                    </div>
+                    <div class="forecast-type_button">
+                        <label class="forecast-type_dayly">dayly<input type="radio" name="radio" class="day"></label><label class="forecast-type_weekly">weekly<input type="radio" name="radio" class="week"></label>
+                    </div>
                 </div>
                 <div class="btn">
                     show weather
                 </div>
             </div>
             <div class="weather">
-                <div class="weather_item">
-                    <div class="weather_day">
-                        Monday
+                <div class="weather_row">
+                    <div class="weather_item">
+                        <div class="weather_day">
+                            Monday
+                        </div>
+                        <div class="weather_temperature">
+                            18<span>C</span>
+                        </div>                
+                        <div class="weather_icon">
+                            icon
+                        </div>
                     </div>
-                    <div class="weather_temperature">
-                        18<span>C</span>
-                    </div>                
-                    <div class="weather_icon">
-                        icon
+                    <div class="weather_item">
+                        <div class="weather_day">
+                            Monday
+                        </div>
+                        <div class="weather_temperature">
+                            18<span>C</span>
+                        </div>                
+                        <div class="weather_icon">
+                            icon
+                        </div>
                     </div>
-                </div>
-                <div class="weather_item">
-                    <div class="weather_day">
-                        Monday
+                    <div class="weather_item">
+                        <div class="weather_day">
+                            Monday
+                        </div>
+                        <div class="weather_temperature">
+                            18<span>C</span>
+                        </div>                
+                        <div class="weather_icon">
+                            icon
+                        </div>
                     </div>
-                    <div class="weather_temperature">
-                        18<span>C</span>
-                    </div>                
-                    <div class="weather_icon">
-                        icon
-                    </div>
-                </div>
-                <div class="weather_item">
-                    <div class="weather_day">
-                        Monday
-                    </div>
-                    <div class="weather_temperature">
-                        18<span>C</span>
-                    </div>                
-                    <div class="weather_icon">
-                        icon
-                    </div>
-                </div>
-                <div class="weather_item">
-                    <div class="weather_day">
-                        Monday
-                    </div>
-                    <div class="weather_temperature">
-                        18<span>C</span>
-                    </div>                
-                    <div class="weather_icon">
-                        icon
-                    </div>
-                </div>
-                <div class="weather_item">
-                    <div class="weather_day">
-                        Monday
-                    </div>
-                    <div class="weather_temperature">
-                        18<span>C</span>
-                    </div>                
-                    <div class="weather_icon">
-                        icon
+                    <div class="weather_item">
+                        <div class="weather_day">
+                            Monday
+                        </div>
+                        <div class="weather_temperature">
+                            18<span>C</span>
+                        </div>                
+                        <div class="weather_icon">
+                            icon
+                        </div>
                     </div>
                 </div>
-                <div class="weather_item">
-                    <div class="weather_day">
-                        Monday
+                <div class="weather_row">
+                    <div class="weather_item">
+                        <div class="weather_day">
+                            Monday
+                        </div>
+                        <div class="weather_temperature">
+                            18<span>C</span>
+                        </div>                
+                        <div class="weather_icon">
+                            icon
+                        </div>
                     </div>
-                    <div class="weather_temperature">
-                        18<span>C</span>
-                    </div>                
-                    <div class="weather_icon">
-                        icon
+                    <div class="weather_item">
+                        <div class="weather_day">
+                            Monday
+                        </div>
+                        <div class="weather_temperature">
+                            18<span>C</span>
+                        </div>                
+                        <div class="weather_icon">
+                            icon
+                        </div>
                     </div>
-                </div>
-                <div class="weather_item">
-                    <div class="weather_day">
-                        Monday
+                    <div class="weather_item">
+                        <div class="weather_day">
+                            Monday
+                        </div>
+                        <div class="weather_temperature">
+                            18<span>C</span>
+                        </div>                
+                        <div class="weather_icon">
+                            icon
+                        </div>
                     </div>
-                    <div class="weather_temperature">
-                        18<span>C</span>
-                    </div>                
-                    <div class="weather_icon">
-                        icon
+                    <div class="weather_item">
+                        <div class="weather_day">
+                            Monday
+                        </div>
+                        <div class="weather_temperature">
+                            18<span>C</span>
+                        </div>                
+                        <div class="weather_icon">
+                            icon
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
 
         <footer class="footer">
-            <div class="contacts">
-                <div class="contacts_icons">
-                    <a href="#" class=""></a>
-                    <a href="#" class="icon-group"></a>
-                    <a href="#" class="icon-linkedin"></a>
-                </div>
-                <div class="contacts_author">
-
-                </div>
+            <div class="contacts_icons">
+                <a href="#" class="icon-fb icon"></a>
+                <a href="#" class="icon-group icon"></a>
+                <a href="#" class="icon-linkedin icon"></a>
+                <a href="#" class="icon-insta icon"></a>
+            </div>
+            <div class="contacts_author">
+                &#169; Author, 2021
             </div>
         </footer>
     </div>

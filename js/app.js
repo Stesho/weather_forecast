@@ -1,3 +1,33 @@
+let dayButton = document.querySelector('.forecast-type_dayly');
+let weekButton = document.querySelector('.forecast-type_weekly');
+
+window.addEventListener('load', () => {
+    let btn = document.querySelector('.day');
+    let city = document.querySelector('.timezone_input-field');
+    city.value = "Minsk";
+    btn.checked = true;
+    dayButton.style.background = '#4F5D73';
+    dayButton.style.color = '#fff';
+});
+
+dayButton.addEventListener('click', () => {
+    dayButton.style.background = '#4F5D73';
+    dayButton.style.color = '#fff';
+    weekButton.style.background = '#E6E6FF';
+    weekButton.style.color = '#4F5D73';
+});
+dayButton.addEventListener('', () => {
+    
+});
+
+weekButton.addEventListener('click', () => {
+    weekButton.style.background = '#4F5D73';
+    weekButton.style.color = '#fff';
+    dayButton.style.background = '#E6E6FF';
+    dayButton.style.color = '#4F5D73';
+});
+
+
 // let temp = document.querySelector('.head-location');
 
 // window.addEventListener('load', () => {
