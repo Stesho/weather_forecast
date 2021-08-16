@@ -5,9 +5,10 @@
 }
 
 body {
+    height: 100vh;
     display: flex;
     justify-content: center;
-    /* align-items: center; */
+    align-items: center;
     font-family: sans-serif;
     /* background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143)); */
     background: url('../img/cloud_img.jpg') no-repeat center center fixed;
@@ -18,13 +19,11 @@ body {
 }
 
 .container {
-    /* width: 520px; */
     color: #4F5D73;
     background-color: #fff;
     padding: 0 10px;
     margin: 20px;
     border-radius: 10px;
-    /* border: 1px solid #fff; */
 }
 
 /* =====HEADER===== */
@@ -58,7 +57,6 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    /* border-top: 1px solid #fff; */
 }
 
 .navigation {
@@ -89,7 +87,6 @@ body {
 
 .timezone_input-field {
     width: 250px;
-    /* font-size: 20px; */
     color: #4F5D73;
     background-color: #E6E6FF;
     border: 1px solid #4F5D73;
@@ -167,7 +164,7 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 15px 0;
+    /* padding: 15px 0; */
     border-radius: 5px;
     background-color: #4F5D73;
 }
@@ -179,6 +176,7 @@ body {
 }
 
 .weather_item {
+    width: 85px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -191,6 +189,10 @@ body {
 .weather_icon {
     height: 60px;
     width: 60px;
+}
+
+.weather_image {
+    color: #4F5D73;
 }
 
 /* =====FOOTER===== */
@@ -218,7 +220,6 @@ body {
     color: #4F5D73;
     transition: all 0.2s linear;
 }
-
 .icon:hover {
     color: #8391A7;
 }
