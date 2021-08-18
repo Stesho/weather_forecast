@@ -9,6 +9,8 @@ window.addEventListener('load', () => {
     btn.checked = true;
     dayButton.style.background = '#4F5D73';
     dayButton.style.color = '#fff';
+
+    showWeather();
 });
 
 dayButton.addEventListener('click', () => {
@@ -51,40 +53,57 @@ function showWeather() {
             return response.json();
         })
         .then(data => {
+            let btn = document.querySelector('.day');
             let day = document.querySelectorAll('.weather_day');
             let temperature = document.querySelectorAll('.weather_temperature');
             let icon = document.querySelectorAll('.weather_image');
 
-            let currentDay = Date(data.daily[0].dt*1000).split(' ')[0];
-            let week =['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+            // let time = Date(data.hourly[0].dt*1000).split(' ')[4];
+            let week =['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
             let weatherIcons = {
-                '01d': 'wi-day-sunny.svg',
-                '01n': 'wi-night-clear.svg',
-                '02d': 'wi-day-cloudy.svg',
-                '02n': 'wi-night-alt-cloudy.svg',
-                '03d': 'wi-cloud.svg',
-                '03n': 'wi-cloud.svg',
-                '04d': 'wi-cloudy.svg',
-                '04n': 'wi-cloudy.svg',
-                '09d': 'wi-showers.svg',
-                '09n': 'wi-showers.svg',
-                '10d': 'wi-day-rain.svg',
-                '10n': 'wi-night-alt-rain.svg',
-                '11d': 'wi-storm-showers.svg',
-                '11n': 'wi-storm-showers.svg',
-                '13d': 'wi-day-snow.svg',
-                '13n': 'wi-night-alt-snow.svg',
-                '50d': 'wi-day-fog.svg',
-                '50n': 'wi-night-fog.svg',
+                '01d': 'icon-wi-day-sunny',
+                '01n': 'icon-wi-night-clear',
+                '02d': 'icon-wi-day-cloudy',
+                '02n': 'icon-wi-night-alt-cloudy',
+                '03d': 'icon-wi-cloud',
+                '03n': 'icon-wi-cloud',
+                '04d': 'icon-wi-cloudy',
+                '04n': 'icon-wi-cloudy',
+                '09d': 'icon-wi-showers',
+                '09n': 'icon-wi-showers',
+                '10d': 'icon-wi-day-rain',
+                '10n': 'icon-wi-night-alt-rain',
+                '11d': 'icon-wi-storm-showers',
+                '11n': 'icon-wi-storm-showers',
+                '13d': 'icon-wi-day-snow',
+                '13n': 'icon-wi-night-alt-snow',
+                '50d': 'icon-wi-day-fog',
+                '50n': 'icon-wi-night-fog',
             }
 
-            for(let i = 0, j = week.indexOf(currentDay); i < day.length; i++, j++) {
-                if(j === 7) j = 0;
-                day[i].innerHTML = week[j];
-                temperature[i].innerHTML = (data.daily[i].feels_like.day-273.15).toFixed(1) + '&deg;С';
-                icon[i].src = `./img/${weatherIcons[data.daily[i].weather[0].icon]}`;
+            if(btn.checked === true) {
+                for(let i = 0, j = 0; i < day.length; i++, j+=3) {
+                    let currentTime = new Date(data.hourly[j].dt*1000);
+                    day[i].innerHTML = currentTime.getHours() + ':00';
+                    temperature[i].innerHTML = 'temp: ' + (data.hourly[j].temp-273.15).toFixed(1) + '&deg;С';
+                    icon[i].className = `weather_image ${weatherIcons[data.hourly[j].weather[0].icon]}`;
+                }
             }
+            else {
+                for(let i = 0; i < day.length; i++) {
+                    let currentDay = new Date(data.daily[i].dt*1000);
+                    day[i].innerHTML = week[currentDay.getDay()];
+                    temperature[i].innerHTML = 'day: ' + (data.daily[i].temp.day-273.15).toFixed(1) + '&deg;С';
+                    temperature[i].innerHTML += '<br/>night: ' + (data.daily[i].temp.night-273.15).toFixed(1) + '&deg;С';
+                    icon[i].className = `weather_image ${weatherIcons[data.daily[i].weather[0].icon]}`;
+                }
+            }
+
+            console.log(data);
         });
 }
 
+function showDailyWeather() {
+
+}
 
