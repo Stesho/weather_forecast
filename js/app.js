@@ -4,13 +4,34 @@ let showWeatherButton = document.querySelector('.btn');
 
 window.addEventListener('load', () => {
     let btn = document.querySelector('.day');
-    let city = document.querySelector('.timezone_input-field');
-    city.value = "Minsk";
+    let lon;
+    let lat;
+
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            lon = position.coords.longitude;
+            lat = position.coords.latitude;
+            let city = document.querySelector('.timezone_input-field');
+            let apiKey = 'pk.231ddd06923d3f5bbf9939408619bc0b';
+            let api = `https://eu1.locationiq.com/v1/reverse.php?key=${apiKey}&lat=${lat}&lon=${lon}&format=json`;
+            
+            fetch(api)
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    city.value = data.address.city;
+                    showWeather();
+                });
+        })
+    }
+    else {
+        city.value = 'London';
+        showWeather();
+    }
     btn.checked = true;
     dayButton.style.background = '#4F5D73';
     dayButton.style.color = '#fff';
-
-    showWeather();
 });
 
 dayButton.addEventListener('click', () => {
@@ -19,14 +40,6 @@ dayButton.addEventListener('click', () => {
     weekButton.style.background = '#E6E6FF';
     weekButton.style.color = '#4F5D73';
 });
-// dayButton.addEventListener('mouseover', () => {
-//     dayButton.style.background = '#4F5D73';
-//     dayButton.style.color = '#fff';
-// });
-// dayButton.addEventListener('mouseout', () => {
-//     dayButton.style.background = '#E6E6FF';
-//     dayButton.style.color = '#4F5D73';
-// });
 
 weekButton.addEventListener('click', () => {
     weekButton.style.background = '#4F5D73';
@@ -40,14 +53,14 @@ showWeatherButton.addEventListener('click', () => {
 });
 
 function showWeather() {
-    const cityName = document.querySelector('.timezone_input-field').value;
-    const apiKey = '8d410c4d25751a2ffc588b6019d83a8b';
-    const part = 'current';
-    const city = cities.find(item => item.name === cityName);
-    const lat = city.coord.lat;
-    const long = city.coord.lon;
+    let apiKey = '8d410c4d25751a2ffc588b6019d83a8b';
+    let part = 'current';
+    let cityName = document.querySelector('.timezone_input-field').value;
+    let city = cities.find(item => item.name === cityName);
+    let lat = city.coord.lat;
+    let lon = city.coord.lon;
     
-    const api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=${part}&appid=${apiKey}`;
+    let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${apiKey}`;
     fetch(api)
         .then(response => {
             return response.json();
@@ -57,14 +70,14 @@ function showWeather() {
             let day = document.querySelectorAll('.weather_day');
             let temperature = document.querySelectorAll('.weather_temperature');
             let icon = document.querySelectorAll('.weather_image');
+            let description = document.querySelectorAll('.weather_description');
 
-            // let time = Date(data.hourly[0].dt*1000).split(' ')[4];
             let week =['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
             let weatherIcons = {
                 '01d': 'icon-wi-day-sunny',
                 '01n': 'icon-wi-night-clear',
                 '02d': 'icon-wi-day-cloudy',
-                '02n': 'icon-wi-night-alt-cloudy',
+                '02n': 'icon-wi-night-cloudy',
                 '03d': 'icon-wi-cloud',
                 '03n': 'icon-wi-cloud',
                 '04d': 'icon-wi-cloudy',
@@ -72,11 +85,11 @@ function showWeather() {
                 '09d': 'icon-wi-showers',
                 '09n': 'icon-wi-showers',
                 '10d': 'icon-wi-day-rain',
-                '10n': 'icon-wi-night-alt-rain',
+                '10n': 'icon-wi-night-rain',
                 '11d': 'icon-wi-storm-showers',
                 '11n': 'icon-wi-storm-showers',
                 '13d': 'icon-wi-day-snow',
-                '13n': 'icon-wi-night-alt-snow',
+                '13n': 'icon-wi-night-snow',
                 '50d': 'icon-wi-day-fog',
                 '50n': 'icon-wi-night-fog',
             }
@@ -87,6 +100,7 @@ function showWeather() {
                     day[i].innerHTML = currentTime.getHours() + ':00';
                     temperature[i].innerHTML = 'temp: ' + (data.hourly[j].temp-273.15).toFixed(1) + '&deg;С';
                     icon[i].className = `weather_image ${weatherIcons[data.hourly[j].weather[0].icon]}`;
+                    description[i].innerHTML = data.hourly[j].weather[0].description;
                 }
             }
             else {
@@ -96,14 +110,9 @@ function showWeather() {
                     temperature[i].innerHTML = 'day: ' + (data.daily[i].temp.day-273.15).toFixed(1) + '&deg;С';
                     temperature[i].innerHTML += '<br/>night: ' + (data.daily[i].temp.night-273.15).toFixed(1) + '&deg;С';
                     icon[i].className = `weather_image ${weatherIcons[data.daily[i].weather[0].icon]}`;
+                    description[i].innerHTML = data.daily[i].weather[0].description;
                 }
             }
-
-            console.log(data);
         });
-}
-
-function showDailyWeather() {
-
 }
 

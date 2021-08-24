@@ -5,7 +5,7 @@
 }
 
 body {
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -130,19 +130,11 @@ body {
     border-radius: 6px 0 0 6px;
     transition: all 0.2s;
 }
-.forecast-type_dayly:hover {
-    color: #fff;
-    background-color: #4F5D73;
-}
 
 .forecast-type_weekly {
     border-radius: 0 6px 6px 0;
     border-right: 1px solid #4F5D73;
     transition: all 0.2s;
-}
-.forecast-type_weekly:hover {
-    color: #fff;
-    background-color: #4F5D73;
 }
 
 .btn {
@@ -164,7 +156,6 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* padding: 15px 0; */
     border-radius: 5px;
     background-color: #4F5D73;
 }
@@ -186,13 +177,25 @@ body {
     border-radius: 5px;
 }
 
+.weather_day {
+    padding: 2px;   
+    margin: 0 0 5px 0;
+    color: #CC854A;
+    font-weight: 700;
+}
+
 .weather_temperature {
     font-size: 16px;
+    border-top: 1px solid #4F5D73;
+    border-bottom: 1px solid #4F5D73;
+    padding: 5px 0;
 }
 
 .weather_icon {
     height: 60px;
     width: 60px;
+    padding: 5px 0;
+    border-bottom: 1px solid #4F5D73;
 }
 
 .weather_image {
@@ -201,6 +204,11 @@ body {
     color: #4F5D73;
 }
 
+.weather_description {
+    font-size: 16px;
+    padding: 5px 0 0 0;
+    text-align: center;
+}
 
 /* =====FOOTER===== */
 .footer {
