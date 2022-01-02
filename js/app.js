@@ -4,31 +4,11 @@ let showWeatherButton = document.querySelector('.btn');
 
 window.addEventListener('load', () => {
     let btn = document.querySelector('.day');
-    let lon;
-    let lat;
 
     if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-            lon = position.coords.longitude;
-            lat = position.coords.latitude;
-            let city = document.querySelector('.timezone_input-field');
-            let apiKey = 'pk.231ddd06923d3f5bbf9939408619bc0b';
-            let api = `https://eu1.locationiq.com/v1/reverse.php?key=${apiKey}&lat=${lat}&lon=${lon}&format=json`;
-            
-            fetch(api)
-                .then(response => {
-                    return response.json();
-                })
-                .then(data => {
-                    city.value = data.address.city;
-                    showWeather();
-                });
-        })
+        navigator.geolocation.getCurrentPosition(position => setPosition(position), setPositionError())
     }
-    else {
-        city.value = 'London';
-        showWeather();
-    }
+    
     btn.checked = true;
     dayButton.style.background = '#4F5D73';
     dayButton.style.color = '#fff';
@@ -52,28 +32,52 @@ showWeatherButton.addEventListener('click', () => {
     showWeather();
 });
 
+function setPosition(position) {
+    const lon = position.coords.longitude;
+    const lat = position.coords.latitude;
+    const city = document.querySelector('.timezone_input-field');
+    const apiKey = 'pk.231ddd06923d3f5bbf9939408619bc0b';
+    const api = `https://eu1.locationiq.com/v1/reverse.php?key=${apiKey}&lat=${lat}&lon=${lon}&accept-language=en&format=json`;
+
+    fetch(api)
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+
+        city.value = data.address.city;
+        showWeather();
+    })
+}
+
+function setPositionError() {
+    const city = document.querySelector('.timezone_input-field');
+    city.value = 'London';
+    showWeather();
+}
+
 function showWeather() {
-    let apiKey = '8d410c4d25751a2ffc588b6019d83a8b';
-    let part = 'current';
-    let cityName = document.querySelector('.timezone_input-field').value;
-    let city = cities.find(item => item.name === cityName);
-    let lat = city.coord.lat;
-    let lon = city.coord.lon;
+    const apiKey = '8d410c4d25751a2ffc588b6019d83a8b';
+    const part = 'current';
+    const cityName = document.querySelector('.timezone_input-field').value.toLowerCase();
+    const city = cities.find(item => item.name.toLowerCase() === cityName);
+    const lat = city.coord.lat;
+    const lon = city.coord.lon;
     
-    let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${apiKey}`;
+    const api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${apiKey}`;
     fetch(api)
         .then(response => {
             return response.json();
         })
         .then(data => {
-            let btn = document.querySelector('.day');
-            let day = document.querySelectorAll('.weather_day');
-            let temperature = document.querySelectorAll('.weather_temperature');
-            let icon = document.querySelectorAll('.weather_image');
-            let description = document.querySelectorAll('.weather_description');
+            const btn = document.querySelector('.day');
+            const day = document.querySelectorAll('.weather_day');
+            const temperature = document.querySelectorAll('.weather_temperature');
+            const icon = document.querySelectorAll('.weather_image');
+            const description = document.querySelectorAll('.weather_description');
 
-            let week =['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-            let weatherIcons = {
+            const week =['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const weatherIcons = {
                 '01d': 'icon-wi-day-sunny',
                 '01n': 'icon-wi-night-clear',
                 '02d': 'icon-wi-day-cloudy',
